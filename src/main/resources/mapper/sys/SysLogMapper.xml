@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neo.dao.sys.generator.SysLogMapper">
+  <resultMap id="BaseResultMap" type="com.neo.model.sys.generator.SysLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="module_id" jdbcType="INTEGER" property="moduleId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="belong_class" jdbcType="VARCHAR" property="belongClass" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="log_type" jdbcType="VARCHAR" property="logType" />
+    <result column="log_msg" jdbcType="VARCHAR" property="logMsg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, module_id, create_time, belong_class, method, log_type, log_msg
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.neo.model.sys.generator.SysLog">
+    insert into sys_log (id, user_id, module_id,
+      create_time, belong_class, method,
+      log_type, log_msg)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{moduleId,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP}, #{belongClass,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR},
+      #{logType,jdbcType=VARCHAR}, #{logMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.neo.model.sys.generator.SysLog">
+    insert into sys_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="moduleId != null">
+        module_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="belongClass != null">
+        belong_class,
+      </if>
+      <if test="method != null">
+        method,
+      </if>
+      <if test="logType != null">
+        log_type,
+      </if>
+      <if test="logMsg != null">
+        log_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="belongClass != null">
+        #{belongClass,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="logType != null">
+        #{logType,jdbcType=VARCHAR},
+      </if>
+      <if test="logMsg != null">
+        #{logMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.neo.model.sys.generator.SysLog">
+    update sys_log
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleId != null">
+        module_id = #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="belongClass != null">
+        belong_class = #{belongClass,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="logType != null">
+        log_type = #{logType,jdbcType=VARCHAR},
+      </if>
+      <if test="logMsg != null">
+        log_msg = #{logMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.neo.model.sys.generator.SysLog">
+    update sys_log
+    set user_id = #{userId,jdbcType=INTEGER},
+      module_id = #{moduleId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      belong_class = #{belongClass,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      log_type = #{logType,jdbcType=VARCHAR},
+      log_msg = #{logMsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
